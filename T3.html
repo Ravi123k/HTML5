@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Information</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f2027);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        .container {
+            background-color: #222831;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            margin-top: 30px;
+            color: #eeeeee;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table th {
+            color: #eeeeee;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #393e46;
+        }
+        .table td.college-name, .table td.college-description {
+            color: #bbbbbb; /* Lighter text for better visibility */
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin: 5px;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-primary, .btn-info, .btn-warning, .btn-success {
+            border: none;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        a {
+            color: #00adb5;
+        }
+        a:hover {
+            color: #00fff5;
+        }
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>College Information</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">College Name</th>
+                    <th scope="col">College Description</th>
+                    <th scope="col">Information Brochure</th>
+                    <th scope="col">Fee Structure</th>
+                    <th scope="col">Website</th>
+                </tr>
+            </thead>
+            <tbody id="collegeTableBody">
+                <!-- Table body will be dynamically populated -->
+            </tbody>
+        </table>
+        <div class="btn-container">
+            <button id="addCollegeBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add College</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        function addCollegeRow(name, description, brochureUrl, feeUrl, websiteUrl) {
+            var newRow = `<tr>
+                            <td class="college-name">${name}</td>
+                            <td class="college-description">${description}</td>
+                            <td><a href="${brochureUrl}" class="btn btn-info" target="_blank"><i class="fas fa-book-open"></i> View Brochure</a></td>
+                            <td><a href="${feeUrl}" class="btn btn-warning" target="_blank"><i class="fas fa-dollar-sign"></i> Fee Structure</a></td>
+                            <td><a href="${websiteUrl}" class="btn btn-success" target="_blank"><i class="fas fa-globe"></i> Visit Website</a></td>
+                          </tr>`;
+            $('#collegeTableBody').append(newRow);
+        }
+
+        $('#addCollegeBtn').click(function() {
+            addCollegeRow(
+                'New College',
+                'Description of New College',
+                'https://example.com/new_college_brochure.pdf',
+                'https://example.com/new_college_fees.pdf',
+                'https://example.com/new_college'
+            );
+        });
+
+        for (let i = 1; i <= 20; i++) {
+            addCollegeRow(
+                `College ${i}`,
+                `Description of College ${i}`,
+                `https://example.com/college_${i}_brochure.pdf`,
+                `https://example.com/college_${i}_fees.pdf`,
+                `https://example.com/college_${i}`
+            );
+        }
+    </script>
+</body>
+</html>
